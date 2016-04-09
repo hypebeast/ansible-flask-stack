@@ -8,4 +8,17 @@
   - postgresql-client
   - postgresql-server-dev-9.1
   - libpq-dev
+  - python-psycopg2
   notify: restart postgresql
+
+- name: Ensure database
+  postgresql_db: name={{ flaskapp_postgresql_table }} encoding='UTF-8'
+  sudo_user: postgres
+
+- name: Ensure user has access to database
+  postgresql_user: db={{ flaskapp_postgresql_table }} name={{ flaskapp_postgresql_user }} password={{ flaskapp_postgresql_password }} priv=ALL
+  sudo_user: postgres
+
+- name: Ensure user does not have unnecessary privilege
+  postgresql_user: name={{ flaskapp_postgresql_user }} role_attr_flags=NOSUPERUSER,NOCREATEDB
+  sudo_user: postgres
