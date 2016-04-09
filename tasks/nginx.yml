@@ -1,0 +1,17 @@
+---
+
+# Install nginx
+- name: Install required software packages
+  apt: pkg={{ item }} state=installed
+  with_items:
+  - nginx
+
+- name: remove default nginx site
+  file: path=/etc/nginx/sites-enabled/default state=absent
+
+- name: ensure nginx.conf
+  copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: ensure log directory
+  file: dest=/var/log/nginx state=directory
+  notify: restart nginx

@@ -1,0 +1,17 @@
+allow_duplicates: false
+
+
+galaxy_info:
+  author: Sebastian Ruml
+  description: Deploy Flask applications
+  license: 3-clause BSD license.
+  min_ansible_version: 1.8
+  platforms:
+    - name: Ubuntu
+  categories:
+    - database
+    - database:nosql
+    - database:postgresql
+    - development
+    - system
+    - web
