@@ -2,7 +2,7 @@
 # should be a shorthand, lowercase and not contain any whitespaces.
 flaskapp_app_name: flaskapp
 
-# The user which runs the Flask application
+# The user used to run the Flask application
 flaskapp_app_user: www-data
 
 # The directory to keep application source code.
@@ -15,7 +15,7 @@ flaskapp_app_log_directory: "/var/log/{{ flaskapp_app_name }}"
 flaskapp_app_requirements: "{{ flaskapp_app_directory }}/requirements.txt"
 
 # The remote git repository to pull application code from, for example:
-# ssh://git@github.com/vitalk/app.git
+# git@github.com:hypebeast/flaskapp.git
 flaskapp_app_repository: git@github.com:hypebeast/flaskapp.git
 
 # The version of the repository to checkout. This can be a full
@@ -28,23 +28,46 @@ flaskapp_app_environment:
 
 # The list of custom commands to run before and after deploy. These commands
 # uses previously defined environment to run.
-app_pre_hooks: []
-app_post_hooks: []
+flaskapp_app_pre_hooks: []
+flaskapp_app_post_hooks: []
 
 # The path to application config to use when launch application.
-app_config:
+flaskapp_app_config:
+
+# The Python version which should be installed
+flaskapp_python_version: 2.7
 
 # The list of system packages required to build/run application.
-app_packages:
+flaskapp_app_packages:
   - git
+  - python{{ python.version }}
   - build-essential
   - python-dev
   - python-virtualenv
   - libpq-dev
   - python-psycopg2
+  - build-essential
+
+# Additional system packages required by your application
+flaskapp_additional_app_packages:
 
 # Install `nodejs` and required package dependencies via `npm`?
 flaskapp_app_requires_npm: no
 
 # Install frontend package dependencies via `bower`?
 flaskapp_app_requires_bower: no
+
+# Install and configure Postgresql
+flaskapp_use_postgresql: true
+
+# Defines if migrations should be run (via Flask-Migrate)
+flaskapp_run_migrations: false
+
+# Set to true if you want to use a custom supervisor config (you need to provisioning it by yourself)
+flaskapp_use_custom_supervisor_conf: false
+
+# Set to true if you want to use a custom nginx config (you need to provisioning it by yourself)
+flaskapp_use_custom_nginx_conf: false
+
+# Set to true if you want to use a custom startup script used by supervisor (you need to provisioning it by yourself)
+flaskapp_use_custom_start_script: false

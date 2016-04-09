@@ -1,13 +1,13 @@
 ---
+  # Install nginx
 
-# Install nginx
-- name: Install required software packages
+- name: Install nginx
   apt: pkg={{ item }} state=installed
   with_items:
   - nginx
 
-- name: remove default nginx site
-  file: path=/etc/nginx/sites-enabled/default state=absent
+# - name: remove default nginx site
+#   file: path=/etc/nginx/sites-enabled/default state=absent
 
 - name: ensure nginx.conf
   copy: src=nginx.conf dest=/etc/nginx/nginx.conf
@@ -15,3 +15,12 @@
 - name: ensure log directory
   file: dest=/var/log/nginx state=directory
   notify: restart nginx
+
+- name: Create nginx virtual host for application
+  template: src=nginx.conf.j2 dest=/etc/nginx/sites-available/{{ flaskapp_app_name }}
+  notify: restart nginx
+  when: not flaskapp_use_custom_nginx_conf
+
+- name: Enable virtual host
+  file: src=/etc/nginx/sites-available/{{ flaskapp_app_name }} dest=/etc/nginx/sites-enabled/{{ flaskapp_app_name }} state=link
+  when: not flaskapp_use_custom_nginx_conf
