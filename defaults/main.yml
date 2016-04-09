@@ -2,6 +2,9 @@
 # should be a shorthand, lowercase and not contain any whitespaces.
 flaskapp_app_name: flaskapp
 
+# Port for the application
+flaskapp_port: 8000
+
 # The user used to run the Flask application
 flaskapp_app_user: www-data
 
@@ -71,3 +74,9 @@ flaskapp_use_custom_nginx_conf: false
 
 # Set to true if you want to use a custom startup script used by supervisor (you need to provisioning it by yourself)
 flaskapp_use_custom_start_script: false
+
+# Nginx server name
+flaskapp_nginx_server_name: {{ flaskapp_name }}.domain.com
+
+# Directory with static files served directly by Nginx
+flaskapp_nginx_static_dir: {{ flaskapp_app_directory }}/static/
