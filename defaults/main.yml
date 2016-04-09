@@ -2,8 +2,11 @@
 # should be a shorthand, lowercase and not contain any whitespaces.
 flaskapp_app_name: flaskapp
 
+# The user which runs the Flask application
+flaskapp_app_user: www-data
+
 # The directory to keep application source code.
-flaskapp_app_directory: "/opt/{{ flaskapp_app_user }}/{{ flaskapp_app_name }}"
+flaskapp_app_directory: "/opt/{{ flaskapp_app_name }}"
 
 # The directory to keep application logs.
 flaskapp_app_log_directory: "/var/log/{{ flaskapp_app_name }}"

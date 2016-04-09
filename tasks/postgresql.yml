@@ -1,0 +1,11 @@
+---
+# Install Postgresql
+
+- name: Install required software packages for Postgresql
+  apt: pkg={{ item }} state=installed
+  with_items:
+  - postgresql
+  - postgresql-client
+  - postgresql-server-dev-9.1
+  - libpq-dev
+  notify: restart postgresql
