@@ -48,35 +48,46 @@ flaskapp_app_packages:
   - python-dev
   - python-virtualenv
   - libpq-dev
-  - python-psycopg2
   - build-essential
 
 # Additional system packages required by your application
 flaskapp_additional_app_packages:
 
 # Install `nodejs` and required package dependencies via `npm`?
-flaskapp_app_requires_npm: no
+flaskapp_app_requires_npm: false
 
 # Install frontend package dependencies via `bower`?
-flaskapp_app_requires_bower: no
+flaskapp_app_requires_bower: false
 
 # Install and configure Postgresql
 flaskapp_use_postgresql: true
 
-# Defines if migrations should be run (via Flask-Migrate)
+# Postgresql db user
+flaskapp_postgresql_user: {{ flaskapp_name }}
+
+# Postgresql db password
+flaskapp_postgresql_pasword: xxxxx
+
+# Postgresql db table name
+flaskapp_postgresql_table: {{ flaskapp_name }}
+
+# Defines if migrations should be run during deployment (via Flask-Migrate)
 flaskapp_run_migrations: false
 
-# Set to true if you want to use a custom supervisor config (you need to provisioning it by yourself)
-flaskapp_use_custom_supervisor_conf: false
-
-# Set to true if you want to use a custom nginx config (you need to provisioning it by yourself)
-flaskapp_use_custom_nginx_conf: false
-
-# Set to true if you want to use a custom startup script used by supervisor (you need to provisioning it by yourself)
-flaskapp_use_custom_start_script: false
+# Directory with migrations scripts
+flaskapp_migrations_dir: ../migrations
 
 # Nginx server name
 flaskapp_nginx_server_name: {{ flaskapp_name }}.domain.com
 
 # Directory with static files served directly by Nginx
 flaskapp_nginx_static_dir: {{ flaskapp_app_directory }}/static/
+
+# Set to true if you want to use a custom nginx config (you need to provisioning it by yourself)
+flaskapp_use_custom_nginx_conf: false
+
+# Set to true if you want to use a custom supervisor config (you need to provisioning it by yourself)
+flaskapp_use_custom_supervisor_conf: false
+
+# Set to true if you want to use a custom startup script used by supervisor (you need to provisioning it by yourself)
+flaskapp_use_custom_start_script: false

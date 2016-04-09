@@ -9,3 +9,6 @@
 
 - include: postgresql.yml
   when: flaskapp_use_postgresql
+
+- include: node.yml
+  when: flaskapp_app_requires_npm
