@@ -1,13 +1,16 @@
-allow_duplicates: false
-
-
+---
 galaxy_info:
   author: Sebastian Ruml
   description: Deploy Flask applications
-  license: 3-clause BSD license.
+  license: MIT
   min_ansible_version: 1.8
   platforms:
     - name: Ubuntu
+      versions:
+        - all
+    - name: Debian
+      versions:
+        - all
   categories:
     - database
     - database:nosql

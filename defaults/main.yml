@@ -1,0 +1,47 @@
+# The name of the application, uses to create application directory, e.g.
+# should be a shorthand, lowercase and not contain any whitespaces.
+flaskapp_app_name: flaskapp
+
+# The directory to keep application source code.
+flaskapp_app_directory: "/opt/{{ flaskapp_app_user }}/{{ flaskapp_app_name }}"
+
+# The directory to keep application logs.
+flaskapp_app_log_directory: "/var/log/{{ flaskapp_app_name }}"
+
+# The path to application requirements.
+flaskapp_app_requirements: "{{ flaskapp_app_directory }}/requirements.txt"
+
+# The remote git repository to pull application code from, for example:
+# ssh://git@github.com/vitalk/app.git
+flaskapp_app_repository: git@github.com:hypebeast/flaskapp.git
+
+# The version of the repository to checkout. This can be a full
+# 40-character SHA1 hash, the branch or a tag name.
+flaskapp_app_version: master
+
+# The list of environment variables uses to run most of commands.
+flaskapp_app_environment:
+  PATH: "{{ flaskapp_app_directory }}/bin:{{ ansible_env.PATH }}"
+
+# The list of custom commands to run before and after deploy. These commands
+# uses previously defined environment to run.
+app_pre_hooks: []
+app_post_hooks: []
+
+# The path to application config to use when launch application.
+app_config:
+
+# The list of system packages required to build/run application.
+app_packages:
+  - git
+  - build-essential
+  - python-dev
+  - python-virtualenv
+  - libpq-dev
+  - python-psycopg2
+
+# Install `nodejs` and required package dependencies via `npm`?
+flaskapp_app_requires_npm: no
+
+# Install frontend package dependencies via `bower`?
+flaskapp_app_requires_bower: no
