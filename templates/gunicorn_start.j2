@@ -1,0 +1,28 @@
+#!/bin/bash
+
+NAME="{{ flaskapp_name }}"
+FLASKDIR="{{ flaskapp_app_directory }}"
+VENVDIR=$FLASKDIR/env
+SOCKFILE=$FLASKDIR/sock
+NUM_WORKERS=2
+HOST=127.0.0.1
+PORT={{ flaskapp_port }}
+
+echo "Starting $NAME"
+
+# activate the virtualenv
+cd $VENVDIR
+source bin/activate
+
+export PYTHONPATH=$FLASKDIR:$PYTHONPATH
+
+# Create the run directory if it doesn't exist
+RUNDIR=$(dirname $SOCKFILE)
+test -d $RUNDIR || mkdir -p $RUNDIR
+
+# Start gunicorn
+exec gunicorn {{ flaskapp_name }}.app:create_app\(\) -b $HOST:$PORT \
+  --name $NAME \
+  --workers $NUM_WORKERS \
+  --log-level=warn \
+  --bind=unix:$SOCKFILE

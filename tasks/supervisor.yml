@@ -6,3 +6,12 @@
   with_items:
   - supervisor
   notify: restart supervisor
+
+- name: Ensure supervisor config for app
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ flaskapp_name }}.conf
+  notify: restart supervisor
+  when: not flaskapp_use_custom_supervisor_conf
+
+- name: Ensure startup script
+  template: src=gunicorn_start.j2 dest={{ flaskapp_app_directory }}/gunicorn_start mode=0755
+  when: not flaskapp_use_custom_start_script
