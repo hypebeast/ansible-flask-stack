@@ -1,0 +1,5 @@
+---
+  # Deploy the application
+
+- name: Install required node packages
+  npm: path={{ flaskapp_app_directory }} state=present
