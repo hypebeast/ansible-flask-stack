@@ -44,18 +44,11 @@
   register: node_bin
   when: flaskapp_app_requires_npm
 
-- name: Add bower binary to PATH
-  lineinfile:
-    dest=/etc/environment
-    state=present
-    line='PATH="$PATH:{{ node_bin.stdout }}"'
-  when: node_bin is defined
-
 - name: Install required bower packages
   command: "{{ node_bin.stdout }}/bower --allow-root install"
   args:
     chdir: "{{ flaskapp_app_directory }}"
-  when: flaskapp_app_requires_bower
+  when: flaskapp_app_requires_bower and node_bin
 
 - name: Run post hooks
   command: "{{ item }} chdir={{ flaskapp_app_directory }}"
