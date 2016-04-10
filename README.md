@@ -1,6 +1,6 @@
 # ansible-flaskapp
 
-Provision and deploy Flask applications.
+Ansible role for provisioning and deploying Flask applications.
 
 
 ## Features
@@ -15,3 +15,38 @@ ansible-flaskapp is an Ansible role distributed globally using [Ansible Galaxy](
 ```
 $ ansible-galaxy install sruml.ansible-flaskapp
 ```
+
+
+## Usage
+
+Configure it as follows:
+
+```yaml
+- hosts: servers
+  roles:
+     - nodesource.node
+```
+
+
+## Role Variables
+
+TODO
+
+
+## Testing
+
+TODO
+
+
+## Author
+
+Sebastian Ruml, sebastian@sebastianruml.name
+
+
+## Credits
+
+Credits goes to the authors of the following projects:
+
+  * https://github.com/vitalk/ansible-flaskapp
+  * https://github.com/ansistrano/deploy
+  * https://github.com/nodesource/ansible-nodejs-role

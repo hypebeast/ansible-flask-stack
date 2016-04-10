@@ -1,5 +1,63 @@
 ---
   # Deploy the application
 
+- name: Run pre hooks
+  command: "{{ item }} chdir={{ flaskapp_app_directory }}"
+  with_items: flaskapp_app_pre_hooks
+  environment: flaskapp_app_environment
+  tags:
+    - app
+    - hook
+
+- name: Checkout the latest source code
+  git: repo={{ app_repository }} dest={{ app_directory }}
+    version={{ flaskapp_app_version }} accept_hostkey=true
+    force=yes
+  when: app_repository is defined and app_repository
+
+- stat: path={{ flaskapp_app_config }}
+  delegate_to: localhost
+  sudo: false
+  register: flaskapp_app_config_file
+  when: flaskapp_app_config is defined and flaskapp_app_config
+
+- name: Copy application config to remote
+  copy:
+    src={{ flaskapp_app_config }}
+    dest={{ flaskapp_app_directory }}
+  when: flaskapp_app_config_file is defined and flaskapp_app_config_file.stat.exists
+
+- name: Install application dependencies into virtualenv
+  pip:
+    requirements={{ flaskapp_app_requirements }}
+    virtualenv={{ flaskapp_app_directory }}/env
+    state=present
+
 - name: Install required node packages
   npm: path={{ flaskapp_app_directory }} state=present
+  when: flaskapp_app_requires_npm
+
+- name: Get path of the node binaries
+  shell: npm bin
+  args:
+    chdir: "{{ flaskapp_app_directory }}"
+  register: node_bin
+  when: flaskapp_app_requires_npm
+
+- name: Add bower binary to PATH
+  lineinfile:
+    dest=/etc/environment
+    state=present
+    line='PATH="$PATH:{{ node_bin.stdout }}"'
+  when: node_bin is defined
+
+- name: Install required bower packages
+  command: "{{ node_bin.stdout }}/bower --allow-root install"
+  args:
+    chdir: "{{ flaskapp_app_directory }}"
+  when: flaskapp_app_requires_bower
+
+- name: Run post hooks
+  command: "{{ item }} chdir={{ flaskapp_app_directory }}"
+  with_items: flaskapp_app_post_hooks
+  environment: flaskapp_app_environment
