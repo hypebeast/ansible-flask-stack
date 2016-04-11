@@ -54,3 +54,6 @@
   command: "{{ item }} chdir={{ flaskapp_app_directory }}"
   with_items: flaskapp_app_post_hooks
   environment: flaskapp_app_environment
+
+- name: Ensure application is restartet
+  service: name=supervisor state=restarted
