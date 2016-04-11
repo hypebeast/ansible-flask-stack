@@ -3,4 +3,4 @@
   hosts: all
   sudo: yes
   roles:
-    - role: "ansible-nodejs-role"
+    - role: "ansible-flaskapp"
