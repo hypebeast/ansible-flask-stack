@@ -13,5 +13,8 @@
 - name: Ensure flask user
   user: name={{ flaskapp_app_user }} group={{ flaskapp_app_user }} createhome=no
 
+- name: Ensure app directory
+  file: dest={{ flaskapp_app_directory }} state=directory
+
 - name: Ensure app log directory
   file: dest={{ flaskapp_app_log_directory }} state=directory
