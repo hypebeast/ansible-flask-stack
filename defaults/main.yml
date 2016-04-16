@@ -63,7 +63,7 @@ flaskapp_app_requires_bower: false
 flaskapp_use_postgresql: true
 
 # Postgresql db user
-flaskapp_postgresql_user: {{ flaskapp_app_name }}
+flaskapp_postgresql_user: "{{ flaskapp_app_name }}"
 
 # Postgresql db password
 flaskapp_postgresql_pasword: xxxxx
@@ -78,10 +78,10 @@ flaskapp_run_migrations: false
 flaskapp_migrations_dir: ../migrations
 
 # Nginx server name
-flaskapp_nginx_server_name: {{ flaskapp_app_name }}.domain.com
+flaskapp_nginx_server_name: ""{{ flaskapp_app_name }}.domain.com"
 
 # Directory with static files served directly by Nginx
-flaskapp_nginx_static_dir: {{ flaskapp_app_directory }}/static/
+flaskapp_nginx_static_dir: "{{ flaskapp_app_directory }}/static/"
 
 # Set to true if you want to use a custom nginx config (you need to provisioning it by yourself)
 flaskapp_use_custom_nginx_conf: false
