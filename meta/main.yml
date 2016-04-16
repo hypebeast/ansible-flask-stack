@@ -18,3 +18,5 @@ galaxy_info:
     - development
     - system
     - web
+    - python
+    - flask
