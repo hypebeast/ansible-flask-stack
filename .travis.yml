@@ -5,7 +5,7 @@ language: generic
 python: "2.7"
 
 env:
-  - SITE=tests/test.yml
+  - TEST_SETUP=tests/test_setup.yml
 
 matrix:
   include:
@@ -25,7 +25,7 @@ install:
 
 script:
  # Check the role/playbook's syntax.
- - "ansible-playbook -i inventory $SITE --syntax-check"
+ - "ansible-playbook -i inventory $TEST_SETUP --syntax-check"
 
  # Run the role/playbook with ansible-playbook.
- - "ansible-playbook -i inventory $SITE --connection=local --sudo"
+ - "ansible-playbook -i inventory $TEST_SETUP --connection=local --sudo"

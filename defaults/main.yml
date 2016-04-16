@@ -19,7 +19,7 @@ flaskapp_app_requirements: "{{ flaskapp_app_directory }}/requirements.txt"
 
 # The remote git repository to pull application code from, for example:
 # git@github.com:hypebeast/flaskapp.git
-flaskapp_app_repository: git@github.com:hypebeast/flaskapp.git
+flaskapp_app_repository: git@github.com:hypebeast/ansible-flaskapp.git
 
 # The version of the repository to checkout. This can be a full
 # 40-character SHA1 hash, the branch or a tag name.
