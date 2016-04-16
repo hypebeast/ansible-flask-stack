@@ -6,11 +6,7 @@ python: "2.7"
 
 env:
   - TEST_SETUP=tests/test_setup.yml
-
-matrix:
-  include:
-    - env: ANSIBLE_VERSION=ppa:ansible/ansible
-    - env: ANSIBLE_VERSION=ppa:ansible/ansible-1.9
+  - ANSIBLE_VERSION=ppa:ansible/ansible-1.9
 
 before_install:
  - sudo apt-get update -qq
