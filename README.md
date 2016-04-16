@@ -15,7 +15,7 @@ TODO
 ansible-flaskapp is an Ansible role distributed globally using [Ansible Galaxy](https://galaxy.ansible.com/). In order to install ansible-flaskapp role you can use the following command.
 
 ```
-$ ansible-galaxy install sruml.ansible-flaskapp
+$ ansible-galaxy install hypebeast.ansible-flaskapp
 ```
 
 ### Manually
@@ -27,15 +27,22 @@ Or directly clone the repository in your *roles* folder:
 
 ## Usage
 
-  * Add the *ansible-flaskapp* role to your *playbook*:
+### Installed via ansible-galaxy
+
+#### Add the role to your playbook
+
+Add the *ansible-flaskapp* role to your *playbook*:
 
 ```yaml
 - hosts: servers
   roles:
-     - sruml.ansible-flaskapp
+     - hypebeast.ansible-flaskapp
 ```
 
-  * Set up role variables (see Role Variables).
+#### Set up role variables
+
+Customize the role variables (see role variables)
+
 
 ## Role Variables
 
