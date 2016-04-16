@@ -9,5 +9,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
         config.vm.box = 'ubuntu/trusty64'
         config.vm.hostname = 'web'
         config.vm.synced_folder '.', '/vagrant', disabled: true
+
+        config.vm.provision "ansible" do |ansible|
+          ansible.verbose = "v"
+          ansible.playbook = "role.yml"
+          ansible.sudo = true
+        end
     end
 end

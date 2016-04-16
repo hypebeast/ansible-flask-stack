@@ -1,0 +1,8 @@
+---
+  # Main entry: runs setup and deploy task
+
+- include: setup.yml
+  tags: ansible-flaskapp-setup
+
+- include: deploy.yml
+  tags: ansible-flaskapp-deploy
