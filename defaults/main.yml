@@ -78,7 +78,7 @@ flaskapp_run_migrations: false
 flaskapp_migrations_dir: ../migrations
 
 # Nginx server name
-flaskapp_nginx_server_name: ""{{ flaskapp_app_name }}.domain.com"
+flaskapp_nginx_server_name: "{{ flaskapp_app_name }}.domain.com"
 
 # Directory with static files served directly by Nginx
 flaskapp_nginx_static_dir: "{{ flaskapp_app_directory }}/static/"
