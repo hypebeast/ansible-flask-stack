@@ -6,12 +6,11 @@ python: "2.7"
 
 env:
   - TEST_SETUP=tests/test_setup.yml
-  - ANSIBLE_PPA=ppa:ansible/ansible
 
 before_install:
  - sudo apt-get update -qq
  - sudo apt-get -y install software-properties-common
- - sudo apt-add-repository -y $ANSIBLE_PPA
+ - sudo apt-add-repository -y ppa:ansible/ansible
  - sudo apt-get -y update
  - sudo apt-get -y install ansible
  - ansible --version
