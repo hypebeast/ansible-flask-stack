@@ -69,7 +69,7 @@ flaskapp_postgresql_user: "{{ flaskapp_app_name }}"
 flaskapp_postgresql_pasword: xxxxx
 
 # Postgresql db table name
-flaskapp_postgresql_table: {{ flaskapp_app_name }}
+flaskapp_postgresql_table: "{{ flaskapp_app_name }}"
 
 # Defines if migrations should be run during deployment (via Flask-Migrate)
 flaskapp_run_migrations: false
