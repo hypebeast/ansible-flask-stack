@@ -114,13 +114,13 @@ flaskapp_app_requires_bower: false
 flaskapp_use_postgresql: true
 
 # Postgresql db user
-flaskapp_postgresql_user: {{ flaskapp_name }}
+flaskapp_postgresql_user: {{ flaskapp_app_name }}
 
 # Postgresql db password
 flaskapp_postgresql_pasword: xxxxx
 
 # Postgresql db table name
-flaskapp_postgresql_table: {{ flaskapp_name }}
+flaskapp_postgresql_table: {{ flaskapp_app_name }}
 
 # Defines if migrations should be run during deployment (via Flask-Migrate)
 flaskapp_run_migrations: false
@@ -129,7 +129,7 @@ flaskapp_run_migrations: false
 flaskapp_migrations_dir: ../migrations
 
 # Nginx server name
-flaskapp_nginx_server_name: {{ flaskapp_name }}.domain.com
+flaskapp_nginx_server_name: {{ flaskapp_app_name }}.domain.com
 
 # Directory with static files served directly by Nginx
 flaskapp_nginx_static_dir: {{ flaskapp_app_directory }}/static/

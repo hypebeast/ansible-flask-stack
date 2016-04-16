@@ -1,6 +1,6 @@
 #!/bin/bash
 
-NAME="{{ flaskapp_name }}"
+NAME="{{ flaskapp_app_name }}"
 FLASKDIR="{{ flaskapp_app_directory }}"
 VENVDIR=$FLASKDIR/env
 SOCKFILE=$FLASKDIR/sock
@@ -21,7 +21,7 @@ RUNDIR=$(dirname $SOCKFILE)
 test -d $RUNDIR || mkdir -p $RUNDIR
 
 # Start gunicorn
-exec gunicorn {{ flaskapp_name }}.app:create_app\(\) -b $HOST:$PORT \
+exec gunicorn {{ flaskapp_app_name }}.app:create_app\(\) -b $HOST:$PORT \
   --name $NAME \
   --workers $NUM_WORKERS \
   --log-level=warn \

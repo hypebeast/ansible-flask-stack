@@ -8,7 +8,7 @@
   notify: restart supervisor
 
 - name: Ensure supervisor config for app
-  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ flaskapp_name }}.conf
+  template: src=supervisor.conf.j2 dest=/etc/supervisor/conf.d/{{ flaskapp_app_name }}.conf
   notify: restart supervisor
   when: not flaskapp_use_custom_supervisor_conf
 

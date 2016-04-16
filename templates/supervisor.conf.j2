@@ -1,9 +1,9 @@
-[program:{{ flaskapp_name }}]
+[program:{{ flaskapp_app_name }}]
 command = {{ flaskapp_app_directory }}/gunicorn_start
 user = {{ flaskapp_app_user }}
 startretries=3
 autostart=true
 autorestart=true
 stopwaitsecs = 60
-stdout_logfile = {{ flaskapp_app_log_directory }}/{{ flaskapp_name }}.log
-stderr_logfile = {{ flaskapp_app_log_directory }}/{{ flaskapp_name }}.error.log
+stdout_logfile = {{ flaskapp_app_log_directory }}/{{ flaskapp_app_name }}.log
+stderr_logfile = {{ flaskapp_app_log_directory }}/{{ flaskapp_app_name }}.error.log

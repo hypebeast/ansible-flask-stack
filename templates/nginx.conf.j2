@@ -1,4 +1,4 @@
-upstream {{ flaskapp_name }} {
+upstream {{ flaskapp_app_name }} {
   server 127.0.0.1:{{ flaskapp_port }};
 }
 
@@ -7,7 +7,7 @@ server {
     server_name {{ flaskapp_nginx_server_name }};
 
     location / {
-        proxy_pass  http://{{ flaskapp_name }};
+        proxy_pass  http://{{ flaskapp_app_name }};
         proxy_http_version 1.1;
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
