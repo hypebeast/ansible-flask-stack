@@ -9,14 +9,15 @@ Ansible role for provisioning and deploying Flask applications.
 
   * Provides tasks for provisioning and deploying a Flask application.
   * Provisions a server with all required applications and requirements.
-  * Easily deploy your Flask application.
-  * Use Nginx as reverse proxy.
-  * Use Supervisor as process manager.
-  * Setup Postgresql with required database and user.
-  * Run pre and post install hooks.
-  * Install npm and bower if required.
-  * Run `npm install` and `bower install` during deployment
-  * Run Flask
+  * Easily deploy your Flask application
+  * Use git to checkout the application
+  * Use Nginx as reverse proxy
+  * Use Supervisor as process manager
+  * Use Gunicorn to run the Flask application (can be overridden if a custom start script is provided)
+  * Setup Postgresql with required database and user (optional)
+  * Run pre and post install hooks
+  * Install npm and bower if required
+  * Run `npm install` and `bower install` during deployment (optional)
 
 
 ## Installation
