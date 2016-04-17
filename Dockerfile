@@ -7,4 +7,4 @@ ADD ./tests/localhosts /etc/ansible/hosts
 
 ENV WORKDIR /build/ansible-flaskapp
 
-RUN ansible-playbook $WORKDIR/role.yml -c local
+RUN ansible-playbook $WORKDIR/role.yml -c local --tags "ansible-flaskapp-setup"

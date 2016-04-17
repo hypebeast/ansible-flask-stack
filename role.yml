@@ -5,4 +5,3 @@
   sudo: yes
   roles:
     - role: ./
-      tags: ansible-flaskapp-setup

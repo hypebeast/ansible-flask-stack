@@ -5,7 +5,7 @@ language: generic
 python: "2.7"
 
 env:
-  - TEST_SETUP=tests/test_setup.yml
+  - TEST_SETUP=tests/test.yml
 
 before_install:
  - sudo apt-get update -qq
@@ -22,5 +22,5 @@ script:
  # Check the role/playbook's syntax.
  - "ansible-playbook -i inventory $TEST_SETUP --syntax-check"
 
- # Run the role/playbook with ansible-playbook.
- - "ansible-playbook -i inventory $TEST_SETUP --connection=local --sudo"
+ # Run the setup role/playbook with ansible-playbook.
+ - "ansible-playbook -i inventory $TEST_SETUP --connection=local --sudo --tags='ansible-flaskapp-setup'"
