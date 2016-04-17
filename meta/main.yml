@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Sebastian Ruml
-  description: Deploy Flask applications
+  description: Provisioning and deploy Flask applications
   license: MIT
   min_ansible_version: 1.8
   platforms:
@@ -11,7 +11,6 @@ galaxy_info:
     - name: Debian
       versions:
         - all
-  dependencies: []
   categories:
     - database
     - database:nosql
@@ -21,3 +20,4 @@ galaxy_info:
     - web
     - python
     - flask
+  dependencies: []
