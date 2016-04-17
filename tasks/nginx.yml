@@ -10,7 +10,7 @@
 #   file: path=/etc/nginx/sites-enabled/default state=absent
 
 - name: ensure nginx.conf
-  copy: src=nginx.conf dest=/etc/nginx/nginx.conf
+  copy: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
 
 - name: ensure log directory
   file: dest=/var/log/nginx state=directory

@@ -5,7 +5,7 @@ language: generic
 python: "2.7"
 
 env:
-  - TEST_SETUP=role.yml
+  - TEST_SETUP=tests/test_deploy.yml
 
 before_install:
  - sudo apt-get update -qq
