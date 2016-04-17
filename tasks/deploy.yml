@@ -6,7 +6,6 @@
   with_items: flaskapp_app_pre_hooks
   environment: flaskapp_app_environment
   tags:
-    - app
     - hook
 
 - name: Checkout the latest source code
@@ -50,10 +49,18 @@
     chdir: "{{ flaskapp_app_directory }}"
   when: flaskapp_app_requires_bower and node_bin
 
+- name: Run migrations
+  command: "{{ flaskapp_migration_command }}"
+  args:
+    chdir: "{{ flaskapp_app_directory }}"
+  when: flaskapp_run_migrations
+
 - name: Run post hooks
   command: "{{ item }} chdir={{ flaskapp_app_directory }}"
   with_items: flaskapp_app_post_hooks
   environment: flaskapp_app_environment
+  tags:
+    - hook
 
 - name: Ensure application is restartet
   service: name=supervisor state=restarted

@@ -1,11 +1,22 @@
 # ansible-flaskapp
 
+[![Build Status](https://travis-ci.org/hypebeast/ansible-flaskapp.svg?branch=master)](https://travis-ci.org/hypebeast/ansible-flaskapp)
+
 Ansible role for provisioning and deploying Flask applications.
 
 
 ## Features
 
-TODO
+  * Provides tasks for provisioning and deploying a Flask application.
+  * Provisions a server with all required applications and requirements.
+  * Easily deploy your Flask application.
+  * Use Nginx as reverse proxy.
+  * Use Supervisor as process manager.
+  * Setup Postgresql with required database and user.
+  * Run pre and post install hooks.
+  * Install npm and bower if required.
+  * Run `npm install` and `bower install` during deployment
+  * Run Flask
 
 
 ## Installation
@@ -36,8 +47,19 @@ Add the *ansible-flaskapp* role to your *playbook*:
 ```yaml
 - hosts: servers
   roles:
-     - hypebeast.ansible-flaskapp
+     - role: hypebeast.ansible-flaskapp
 ```
+
+This executes the setup and deploy tasks. If you want to run only the deploy task:
+
+```yaml
+- hosts: servers
+  roles:
+     - role: hypebeast.ansible-flaskapp
+       tags: ansible-flaskapp-deploy
+```
+
+
 
 #### Set up role variables
 
@@ -70,7 +92,7 @@ flaskapp_app_requirements: "{{ flaskapp_app_directory }}/requirements.txt"
 
 # The remote git repository to pull application code from, for example:
 # git@github.com:hypebeast/flaskapp.git
-flaskapp_app_repository: git@github.com:hypebeast/flaskapp.git
+flaskapp_app_repository: git@github.com:hypebeast/ansible-flaskapp.git
 
 # The version of the repository to checkout. This can be a full
 # 40-character SHA1 hash, the branch or a tag name.
@@ -114,25 +136,28 @@ flaskapp_app_requires_bower: false
 flaskapp_use_postgresql: true
 
 # Postgresql db user
-flaskapp_postgresql_user: {{ flaskapp_app_name }}
+flaskapp_postgresql_user: "{{ flaskapp_app_name }}"
 
 # Postgresql db password
-flaskapp_postgresql_pasword: xxxxx
+flaskapp_postgresql_password: xxxxx
 
 # Postgresql db table name
-flaskapp_postgresql_table: {{ flaskapp_app_name }}
+flaskapp_postgresql_table: "{{ flaskapp_app_name }}"
 
-# Defines if migrations should be run during deployment (via Flask-Migrate)
+# Defines if migrations should be run during deployment
 flaskapp_run_migrations: false
 
 # Directory with migrations scripts
 flaskapp_migrations_dir: ../migrations
 
+# Migration command
+flaskapp_migration_command: python manage.py migrate
+
 # Nginx server name
-flaskapp_nginx_server_name: {{ flaskapp_app_name }}.domain.com
+flaskapp_nginx_server_name: "{{ flaskapp_app_name }}.domain.com"
 
 # Directory with static files served directly by Nginx
-flaskapp_nginx_static_dir: {{ flaskapp_app_directory }}/static/
+flaskapp_nginx_static_dir: "{{ flaskapp_app_directory }}/static/"
 
 # Set to true if you want to use a custom nginx config (you need to provisioning it by yourself)
 flaskapp_use_custom_nginx_conf: false
