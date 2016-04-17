@@ -1,7 +1,0 @@
----
-
-- name: Test the ansible-flaskapp role
-  hosts: all
-  sudo: yes
-  roles:
-    - role: ansible-flaskapp
