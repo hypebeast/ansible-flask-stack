@@ -2,6 +2,9 @@
 
 - name: Test the ansible-flaskapp role
   hosts: all
-  sudo: yes
+  remote_user: root
+  become: yes
+  vars_files:
+    - ./vars.yml
   roles:
-    - role: ansible-flaskapp
+    - role: ansible-flask-stack

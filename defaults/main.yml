@@ -43,9 +43,10 @@ flaskapp_python_version: 2.7
 # The list of system packages required to build/run application.
 flaskapp_app_packages:
   - git
-  - python{{ python.version }}
+  - python{{ flaskapp_python_version }}
   - build-essential
   - python-dev
+  - python-pip
   - python-virtualenv
   - libpq-dev
   - build-essential

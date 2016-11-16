@@ -3,12 +3,10 @@
 
 - name: Ensure packages required for the Flask application
   apt: pkg={{ item }} state=present
-  sudo: true
-  with_items: flaskapp_app_packages
+  with_items: '{{ flaskapp_app_packages }}'
 
 - name: Install the latest pip version
   pip: name=pip extra_args='-U'
-  sudo: true
 
 - name: Ensure flask user
   user: name={{ flaskapp_app_user }} group={{ flaskapp_app_user }} createhome=no

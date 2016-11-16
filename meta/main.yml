@@ -13,7 +13,6 @@ galaxy_info:
         - all
   categories:
     - database
-    - database:nosql
     - database:postgresql
     - development
     - system

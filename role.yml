@@ -2,6 +2,7 @@
 
 - name: Test the ansible-flaskapp role
   hosts: all
-  sudo: yes
+  remote_user: root
+  become: yes
   roles:
     - role: ./

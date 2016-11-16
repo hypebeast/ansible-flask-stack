@@ -15,7 +15,7 @@ Ansible role for provisioning and deploying Flask applications.
   * Use Supervisor as process manager
   * Use Gunicorn to run the Flask application (can be overridden if a custom start script is provided)
   * Setup Postgresql with required database and user (optional)
-  * Run pre and post install hooks
+  * Run custom pre and post install hooks
   * Install npm and bower if required
   * Run `npm install` and `bower install` during deployment (optional)
 
@@ -27,49 +27,58 @@ Ansible role for provisioning and deploying Flask applications.
 ansible-flaskapp is an Ansible role distributed globally using [Ansible Galaxy](https://galaxy.ansible.com/). In order to install ansible-flaskapp role you can use the following command.
 
 ```
-$ ansible-galaxy install hypebeast.ansible-flaskapp
+$ ansible-galaxy install hypebeast.flaskapp
 ```
 
 ### Manually
 
 Or directly clone the repository in your *roles* folder:
 
-  $ git clone https://github.com/hypebeast/ansible-flaskapp roles/ansible-flaskapp
+  $ git clone https://github.com/hypebeast/ansible-flaskapp-stack flaskapp
 
 
-## Usage
+## Examples
 
-### Installed via ansible-galaxy
+### Install with ansible-galaxy
+
+First, install the role
+
+```
+ansible-galaxy install hypebeast.flaskapp
+```
 
 #### Add the role to your playbook
 
 Add the *ansible-flaskapp* role to your *playbook*:
 
 ```yaml
-- hosts: servers
+- hosts: all
   roles:
-     - role: hypebeast.ansible-flaskapp
+    - {role: hypebeast.flaskapp,
+       tags: [flaskapp-setup,flaskapp-deploy]}
 ```
 
-This executes the setup and deploy tasks. If you want to run only the deploy task:
+This executes the setup and deploy tasks.
+
+If you want to run only the deploy task:
 
 ```yaml
-- hosts: servers
+- hosts: all
   roles:
-     - role: hypebeast.ansible-flaskapp
-       tags: ansible-flaskapp-deploy
+    - {role: hypebeast.flaskapp,
+       tags: [flaskapp-deploy]
 ```
 
 
 
 #### Set up role variables
 
-Customize the role variables (see role variables)
+Customize the role variables (see role variables).
 
 
 ## Role Variables
 
-See [defaults/main.yml](./defaults/main.yml) for a full list with available variables:
+See [defaults/main.yml](./defaults/main.yml) for a full list with available variables.
 
 ```yaml
 # The name of the application, uses to create application directory, e.g.
@@ -117,9 +126,10 @@ flaskapp_python_version: 2.7
 # The list of system packages required to build/run application.
 flaskapp_app_packages:
   - git
-  - python{{ python.version }}
+  - python{{ flaskapp_python_version }}
   - build-essential
   - python-dev
+  - python-pip
   - python-virtualenv
   - libpq-dev
   - build-essential
@@ -173,12 +183,19 @@ flaskapp_use_custom_start_script: false
 
 ## Testing
 
-TODO
+The project comes with Vagrantfile that makes it possible to easily test the role.
+
+Use `vagrant provision/vagrant up` or `ansible-playbook tests/test.yml -i vagrant-inventory`.
 
 
 ## Author
 
-Sebastian Ruml, sebastian@sebastianruml.name
+Sebastian Ruml, <sebastian@sebastianruml.name>
+
+
+## License
+
+See the [LICENSE](./LICENSE) file for details.
 
 
 ## Credits

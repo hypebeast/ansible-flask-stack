@@ -5,8 +5,9 @@
   apt: pkg={{ item }} state=installed
   with_items:
   - postgresql
+  - postgresql-contrib
   - postgresql-client
-  - postgresql-server-dev-9.1
+  - postgresql-server-dev-9.3
   - libpq-dev
   - python-psycopg2
   notify: restart postgresql

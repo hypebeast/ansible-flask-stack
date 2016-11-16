@@ -23,4 +23,4 @@ script:
  - "ansible-playbook -i inventory $TEST_SETUP --syntax-check"
 
  # Run the setup role/playbook with ansible-playbook.
- - "ansible-playbook -i inventory $TEST_SETUP --connection=local --sudo --tags='ansible-flaskapp-setup'"
+ - "ansible-playbook -i inventory $TEST_SETUP --connection=local --sudo --tags='flaskapp-setup'"
