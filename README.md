@@ -1,6 +1,6 @@
 # ansible-flaskapp
 
-[![Build Status](https://travis-ci.org/hypebeast/ansible-flaskapp.svg?branch=master)](https://travis-ci.org/hypebeast/ansible-flaskapp)
+[![Build Status](https://travis-ci.org/hypebeast/ansible-flask-stack.svg?branch=master)](https://travis-ci.org/hypebeast/ansible-flask-stack)
 
 Ansible role for provisioning and deploying Flask applications.
 
