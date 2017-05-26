@@ -9,10 +9,10 @@
     - hook
 
 - name: Checkout the latest source code
-  git: repo={{ app_repository }} dest={{ app_directory }}
+  git: repo={{ flaskapp_app_repository }} dest={{ flaskapp_app_repository }}
     version={{ flaskapp_app_version }} accept_hostkey=true
     force=yes
-  when: app_repository is defined and app_repository
+  when: flaskapp_app_repository is defined and flaskapp_app_repository
 
 - stat: path={{ flaskapp_app_config }}
   delegate_to: localhost
